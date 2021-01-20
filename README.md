@@ -13,4 +13,9 @@ This example demonstrates how to define conditional formatting rules in a ViewMo
 
 ![](/Images/wpf_grid_mvvm_conditionalformatting126727.png)
 
-For more information, refer to the following help topic: [How to: Bind the Grid to a Collection of Conditional Formatting Rules](http://docs.devexpress.com/WPF/117884/controls-and-libraries/data-grid/mvvm-enhancements/binding-to-a-collection-of-conditional-formatting-rules).
+For more information, refer to the following help topics: 
+
+* [TableView.FormatConditionsSource](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TableView.FormatConditionsSource) / [TreeListView.FormatConditionsSource](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TreeListView.FormatConditionsSource)
+* [TableView.FormatConditionGeneratorTemplate](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TableView.FormatConditionGeneratorTemplate) / [TreeListView.FormatConditionGeneratorTemplate](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TreeListView.FormatConditionGeneratorTemplate)
+* [TableView.FormatConditionGeneratorTemplateSelector](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TableView.FormatConditionGeneratorTemplateSelector) / [TreeListView.FormatConditionGeneratorTemplateSelector](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TreeListView.FormatConditionGeneratorTemplateSelector)
+* [How to: Bind the Grid to a Collection of Conditional Formatting Rules](http://docs.devexpress.com/WPF/117884/controls-and-libraries/data-grid/mvvm-enhancements/binding-to-a-collection-of-conditional-formatting-rules)
