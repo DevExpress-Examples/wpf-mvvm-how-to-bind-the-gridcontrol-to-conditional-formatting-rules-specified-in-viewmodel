@@ -7,7 +7,7 @@
 * [FormatConditionSelector.cs](./CS/GridMVVMConditionalFormattingRules/FormatConditionSelector.cs) (VB: [FormatConditionSelector.vb](./VB/GridMVVMConditionalFormattingRules/FormatConditionSelector.vb))
 <!-- default file list end -->
 
-# WPF MVVM How to Bind the GridContol to Conditional Formatting Rules Specified in ViewModel
+# How to Bind the WPF GridContol to Conditional Formatting Rules Specified in ViewModel
 
 This example demonstrates how to define conditional formatting rules in a ViewModel and bind them to the GridControl's format condition collection.
 
