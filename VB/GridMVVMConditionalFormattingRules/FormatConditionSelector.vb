@@ -7,6 +7,7 @@ Namespace GridMVVMConditionalFormattingRules
 
 		Public Property BackgroundTemplate() As DataTemplate
 		Public Property FontTemplate() As DataTemplate
+		Public Property IconTemplate() As DataTemplate
 
 		Public Overrides Function SelectTemplate(ByVal item As Object, ByVal container As DependencyObject) As DataTemplate
 			Dim rule As FormattingRule = TryCast(item, FormattingRule)
@@ -18,6 +19,8 @@ Namespace GridMVVMConditionalFormattingRules
 					Return FontTemplate
 				Case FormattingType.Background
 					Return BackgroundTemplate
+				Case FormattingType.Icon
+					Return IconTemplate
 			End Select
 			Return Nothing
 		End Function

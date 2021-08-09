@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:GridMVVMConditionalFormattingRules"
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
         xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" 
-        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-    x:Class="GridMVVMConditionalFormattingRules.MainWindow"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        x:Class="GridMVVMConditionalFormattingRules.MainWindow"
         mc:Ignorable="d" Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
         <local:ViewModel/>
@@ -17,36 +18,55 @@
             <dxmvvm:MapItem Source="Less" Target="Less"/>
             <dxmvvm:MapItem Source="Greater" Target="Greater"/>
         </dxmvvm:ObjectToObjectConverter>
-        <DataTemplate x:Key="FontFormat">
+        <DataTemplate x:Key="BackgroundTemplate">
             <ContentControl>
                 <dxg:FormatCondition 
-                        ApplyToRow="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).ApplyToRow, RelativeSource={RelativeSource Self}}"
-                        ValueRule="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Rule, RelativeSource={RelativeSource Self}, Converter={StaticResource FormatRuleConverter}}"
-                        Value1="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Value, RelativeSource={RelativeSource Self}}"
-                        FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}"
-                        PredefinedFormatName="BoldText"/>
+                    FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}"
+                    ValueRule="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).ValueRule, RelativeSource={RelativeSource Self}, Converter={StaticResource FormatRuleConverter}}"
+                    Value1="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Value, RelativeSource={RelativeSource Self}}"
+                    ApplyToRow="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).ApplyToRow, RelativeSource={RelativeSource Self}}"
+                    PredefinedFormatName="LightRedFill"/>
             </ContentControl>
         </DataTemplate>
-        <DataTemplate x:Key="BackgroundFormat">
+        <DataTemplate x:Key="FontTemplate">
             <ContentControl>
                 <dxg:FormatCondition 
-                        ApplyToRow="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).ApplyToRow, RelativeSource={RelativeSource Self}}"
-                        ValueRule="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Rule, RelativeSource={RelativeSource Self}, Converter={StaticResource FormatRuleConverter}}"
-                        Value1="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Value, RelativeSource={RelativeSource Self}}"
-                        FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}"
-                        PredefinedFormatName="LightRedFill"/>
+                    FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}"
+                    ValueRule="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).ValueRule, RelativeSource={RelativeSource Self}, Converter={StaticResource FormatRuleConverter}}"
+                    Value1="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Value, RelativeSource={RelativeSource Self}}"
+                    ApplyToRow="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).ApplyToRow, RelativeSource={RelativeSource Self}}"
+                    PredefinedFormatName="BoldText"/>
+            </ContentControl>
+        </DataTemplate>
+        <DataTemplate x:Key="IconTemplate">
+            <ContentControl>
+                <dxg:FormatCondition 
+                    FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}"
+                    ValueRule="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).ValueRule, RelativeSource={RelativeSource Self}, Converter={StaticResource FormatRuleConverter}}"
+                    Value1="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Value, RelativeSource={RelativeSource Self}}"
+                    ApplyToRow="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).ApplyToRow, RelativeSource={RelativeSource Self}}">
+                    <dxg:FormatCondition.Format>
+                        <dx:Format Icon="{dx:IconSet Name=Stars3_1}"/>
+                    </dxg:FormatCondition.Format>
+                </dxg:FormatCondition>
             </ContentControl>
         </DataTemplate>
         <local:FormatConditionSelector x:Key="FormatConditionSelector" 
-                                       BackgroundTemplate="{StaticResource BackgroundFormat}" 
-                                       FontTemplate="{StaticResource FontFormat}"/>
+                                       BackgroundTemplate="{StaticResource BackgroundTemplate}" 
+                                       FontTemplate="{StaticResource FontTemplate}" 
+                                       IconTemplate="{StaticResource IconTemplate}"/>
     </Window.Resources>
-    <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding Orders}">
+    <dxg:GridControl ItemsSource="{Binding Orders}">
         <dxg:GridControl.View>
             <dxg:TableView FormatConditionsSource="{Binding Rules}" 
                            FormatConditionGeneratorTemplateSelector="{StaticResource FormatConditionSelector}"/>
         </dxg:GridControl.View>
-        <dxg:GridColumn FieldName="Total" UnboundType="Decimal" Visible="False"
+        <dxg:GridColumn FieldName="City" IsSmart="True"/>
+        <dxg:GridColumn FieldName="Discount" IsSmart="True"/>
+        <dxg:GridColumn FieldName="Freight" IsSmart="True"/>
+        <dxg:GridColumn FieldName="Quantity" IsSmart="True"/>
+        <dxg:GridColumn FieldName="UnitPrice" IsSmart="True"/>
+        <dxg:GridColumn FieldName="Total" UnboundType="Decimal"
                         UnboundExpression="([UnitPrice] * [Quantity] * (1 - [Discount]) - [Freight])"/>
     </dxg:GridControl>
 </Window>
