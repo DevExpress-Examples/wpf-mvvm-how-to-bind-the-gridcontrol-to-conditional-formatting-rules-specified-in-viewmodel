@@ -6,6 +6,7 @@ namespace GridMVVMConditionalFormattingRules {
 
         public DataTemplate BackgroundTemplate { get; set; }
         public DataTemplate FontTemplate { get; set; }
+        public DataTemplate IconTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container) {
             FormattingRule rule = item as FormattingRule;
@@ -15,6 +16,8 @@ namespace GridMVVMConditionalFormattingRules {
                     return FontTemplate;
                 case FormattingType.Background:
                     return BackgroundTemplate;
+                case FormattingType.Icon:
+                    return IconTemplate;
             }
             return null;
         }
